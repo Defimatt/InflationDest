@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>InflationDest</title>
+  <meta name="description" content="Easy Stellar voting for Windows">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">InflationDest</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Easy Stellar voting for Windows</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/MattDuffin/InflationDest/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/MattDuffin/InflationDest/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/MattDuffin/InflationDest" class="code">View InflationDest on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="inflationdest---easy-stellar-voting-for-windows" class="anchor" href="#inflationdest---easy-stellar-voting-for-windows"><span class="octicon octicon-link"></span></a>InflationDest - easy Stellar voting for Windows</h1>
+
+<p>Stellar InflationDest is a quick and dirty tool that allows you to view the <code>InflationDest</code> of any account, and to set the <code>InflationDest</code> of accounts you own.</p>
+
+<p>By doing this, you change the account your Stellars vote for to receive inflation (see <a href="https://www.stellar.org/about/mandate/#Stellar_creation">https://www.stellar.org/about/mandate/#Stellar_creation</a> for details).</p>
+
+<p>Getting an <code>InflationDest</code> only requires an address. However, setting an <code>InflationDest</code> requires an address and a secret key. Unfortunately, there is not much I can do to convince you that this program doesn't do anything nasty with your secret key. However, I have:</p>
+
+<ul>
+<li>Created this program in .NET so that it can be reflected or decompiled using something like JetBrains dotPeek to see what the code is doing</li>
+<li>Shared the source here on GitHub so you can build it from source if you don't trust the precompiled binaries.</li>
+</ul><p>If you have an a username (e.g. Duffles) but don't have the long address, you can lookup the address. However, the federation server that supplies this information was running intermittently at the time of writing, so be patient with it. If I have time, I will extend this to include other features, such as creating new accounts without using the web client and sending Stellar. Have fun!</p>
+
+<h3>
+<a name="attributions" class="anchor" href="#attributions"><span class="octicon octicon-link"></span></a>Attributions:</h3>
+
+<ul>
+<li>ModernUI: <a href="https://mui.codeplex.com/">https://mui.codeplex.com/</a>
+</li>
+<li>Json.NET: <a href="http://json.codeplex.com/">http://json.codeplex.com/</a>
+</li>
+<li>Rocket by the Noun Project: <a href="http://www.thexamlproject.com/#/artwork/89">http://www.thexamlproject.com/#/artwork/89</a>
+</li>
+</ul><h3>
+<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions:</h3>
+
+<p>If you don't want to compile it yourself, get precompiled binaries from <a href="https://github.com/MattDuffin/InflationDest/releases">https://github.com/MattDuffin/InflationDest/releases</a></p>
+
+<p>No setup needed, just extract the ZIP.</p>
+
+<p>Should be fairly simple to work out, but there's a quick YouTube explanation here: <a href="https://www.youtube.com/watch?v=OPptZZjVcTk">https://www.youtube.com/watch?v=OPptZZjVcTk</a></p>
+
+<p>This app requires the .NET Framework. If you have a recent version of Windows with Windows Update enabled, you should have it already. If not, you can get it at <a href="http://www.microsoft.com/en-us/download/details.aspx?id=30653">http://www.microsoft.com/en-us/download/details.aspx?id=30653</a></p>
+
+<h3>
+<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips:</h3>
+
+<p>Tips gratefully received!</p>
+
+<ul>
+<li>Stellar: gDUNatU6tFPgkgW58U5uNf41ArMDCPD6XV</li>
+<li>Bitcoin: 1PAYMATT1UMKDPuHfqvwTmJuEtuYt7BspQ</li>
+</ul><h3>
+<a name="where-should-i-point-my-inflationdest" class="anchor" href="#where-should-i-point-my-inflationdest"><span class="octicon octicon-link"></span></a>Where should I point my InflationDest?</h3>
+
+<p>See the following for ideas:</p>
+
+<ul>
+<li><a href="https://stellartalk.org/topic/74-stellar-creation-and-voting/">https://stellartalk.org/topic/74-stellar-creation-and-voting/</a></li>
+<li><a href="https://stellartalk.org/topic/385-join-str-mining-pool/">https://stellartalk.org/topic/385-join-str-mining-pool/</a></li>
+</ul>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/MattDuffin" class="avatar"><img src="https://avatars3.githubusercontent.com/u/8353780?v=2&amp;s=60" width="48" height="48"></a> <a href="https://github.com/MattDuffin">MattDuffin</a> maintains <a href="https://github.com/MattDuffin/InflationDest">InflationDest</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/MattDuffin/InflationDest/tarball/master" class="tar">tar</a><a href="https://github.com/MattDuffin/InflationDest/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-35164747-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>
