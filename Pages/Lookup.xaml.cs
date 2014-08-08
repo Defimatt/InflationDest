@@ -20,6 +20,7 @@ namespace Duffles.InflationDest.Content
             // TODO: Change this to use ICommand.CanExecute
             Spinner.IsActive = true;
             DoInflationOperation.IsEnabled = false;
+            Reverse.IsEnabled = false;
 
             var worker = new BackgroundWorker();
             worker.DoWork += worker_DoWork;
@@ -38,11 +39,11 @@ namespace Duffles.InflationDest.Content
             {
                 if (e.Error.ToString().Contains("404"))
                 {
-                    ModernDialog.ShowMessage("The Federation server returned HTTP error 404.\r\nThat means it doesn't believe that username exists.", "Lookup", MessageBoxButton.OK);
+                    ModernDialog.ShowMessage("The Federation server returned HTTP error 404.\r\nThat means it doesn't believe that " + (Reverse.IsChecked.Value ? "username" : "address") + " exists.", "Lookup", MessageBoxButton.OK);
                 }
                 else
                 {
-                    ModernDialog.ShowMessage("An error occurred while getting the Stellar address.\r\nError details can be found in the technical information box.", "Lookup", MessageBoxButton.OK);
+                    ModernDialog.ShowMessage("An error occurred while getting the Stellar " + (Reverse.IsChecked.Value ? "username" : "address") + ".\r\nError details can be found in the technical information box.", "Lookup", MessageBoxButton.OK);
                 }
 
                 output.AddParagraph((e.Error as Exception).ToString());
@@ -51,11 +52,11 @@ namespace Duffles.InflationDest.Content
             { 
                 if (e.Result == null)
                 {
-                    ModernDialog.ShowMessage("I couldn't get the Stellar address of that username.\r\nSorry I couldn't be more help (at least in this version!).\r\nPerhaps the technical information box will have some hints about what went wrong?\r\n", "Lookup", MessageBoxButton.OK);
+                    ModernDialog.ShowMessage("I couldn't get the Stellar " + (Reverse.IsChecked.Value ? "username" : "address") + " of that " + (!Reverse.IsChecked.Value ? "username" : "address") + ".\r\nSorry I couldn't be more help (at least in this version!).\r\nPerhaps the technical information box will have some hints about what went wrong?\r\n", "Lookup", MessageBoxButton.OK);
                 }
                 else
                 {
-                    if (ModernDialog.ShowMessage("Stellar address is: " + e.Result.ToString() + "\r\nDo you wish to copy this to the clipboard?", "Lookup", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (ModernDialog.ShowMessage("Stellar " + (Reverse.IsChecked.Value ? "username" : "address") + " is: " + e.Result.ToString() + "\r\nDo you wish to copy this to the clipboard?", "Lookup", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         if (!SafeClipboard.SetText(e.Result.ToString()))
                         {
@@ -68,6 +69,7 @@ namespace Duffles.InflationDest.Content
             // TODO: Change this to use ICommand.CanExecute
             Spinner.IsActive = false;
             DoInflationOperation.IsEnabled = true;
+            Reverse.IsEnabled = true;
         }
 
         void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -85,8 +87,10 @@ namespace Duffles.InflationDest.Content
             var client = new WebClient();
 
             me.ReportProgress(0, "Building query");
+            var reverse = Dispatcher.Invoke<bool>(() => { return Reverse.IsChecked.Value; });
+            me.ReportProgress(0, "Reverse lookup? " + reverse.ToString());
 
-            var address = "https://api.stellar.org/federation?destination=" + (string)e.Argument + "&domain=stellar.org&type=federation";
+            var address = reverse ? "https://api.stellar.org/reverseFederation?destination_address=" + (string)e.Argument + "&domain=stellar.org" : "https://api.stellar.org/federation?destination=" + (string)e.Argument + "&domain=stellar.org&type=federation";
 
             me.ReportProgress(0, "Querying " + address);
 
@@ -101,7 +105,7 @@ namespace Duffles.InflationDest.Content
 
             while (reader.Read() == true)
             {
-                if (reader.Value != null && reader.Value.ToString() == "destination_address")
+                if (reader.Value != null && reader.Value.ToString() == (reverse ? "destination" : "destination_address"))
                 {
                     if (reader.Read() == true)
                     {
@@ -123,9 +127,14 @@ namespace Duffles.InflationDest.Content
 
             if (result != null)
             {
-                me.ReportProgress(0, "Stellar address is " + result);
+                me.ReportProgress(0, "Stellar " + (reverse ? "username" : "address") + " is " + result);
                 e.Result = result;
             }
+        }
+
+        private void Reverse_Checked(object sender, RoutedEventArgs e)
+        {
+            AddressOrUsernameLabel.Text = ((CheckBox)sender).IsChecked.Value ? "Stellar address" : "Stellar username";
         }
     }
 }
