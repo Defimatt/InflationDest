@@ -21,6 +21,8 @@ If you have an a username (e.g. Duffles) but don't have the long address, you ca
 
 Should be fairly simple to work out, but there's a quick YouTube explanation here: https://www.youtube.com/watch?v=OPptZZjVcTk
 
+This app requires the .NET Framework. If you have a recent version of Windows with Windows Update enabled, you should have it already. If not, you can get it at http://www.microsoft.com/en-us/download/details.aspx?id=30653
+
 ### Tips:
 
 Tips gratefully received!
